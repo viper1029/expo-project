@@ -4,6 +4,14 @@
 **Authority order:** Rules Engine Spec v1.1 > Data Model Spec v1.1 > Backlog.
 **Core update from v1.0:** v1.1 is **iOS-first real blocking** and **does NOT include Partner or Token systems yet**. The data model is simplified accordingly, and iOS app identities use **opaque Screen Time tokens** (`iosToken:*`) rather than bundle IDs.
 
+**v1.2 monetization override (applies to implementation):**
+* Tiers are **Free + Pro** only.
+* Credit unlock durations remain **5/15/30** in engine; UI/plan gating shows **Free = [5]**, **Pro = [5,15,30]**.
+* Free cap for distracting apps = **3** (enforced in UI/validation, not schema).
+* Downgrade behavior (trial end/lapse): keep highest-priority mode active, lock other modes, enforce 3-app cap, hide 15/30, honor active grants until expiry.
+* Pro purchase options: monthly + annual (trial) + lifetime (non-consumable).
+* Trial/paywall triggers: 4th distracting app, 2nd mode, 15/30 unlocks, Strict/Hard enable.
+
 ---
 
 # 0) Frozen storage decisions (v1.1)
@@ -87,7 +95,7 @@ All correctness-critical mutations **must** run inside explicit transactions.
 
 ### Entitlement tier
 
-* `FREE`, `PLUS`, `PRO`
+* `FREE`, `PRO`
 
 ### Sync status (kept for future-proofing; v1.1 is local-only)
 
@@ -126,7 +134,7 @@ CREATE TABLE IF NOT EXISTS meta (
 CREATE TABLE IF NOT EXISTS entitlement_state (
   id INTEGER PRIMARY KEY CHECK (id = 1),
 
-  tier TEXT NOT NULL DEFAULT 'FREE',                 -- FREE|PLUS|PRO
+  tier TEXT NOT NULL DEFAULT 'FREE',                 -- FREE|PRO
   subscription_active INTEGER NOT NULL DEFAULT 0 CHECK (subscription_active IN (0,1)),
   updated_ts_utc_ms INTEGER NOT NULL
 );
