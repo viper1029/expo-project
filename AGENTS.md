@@ -113,9 +113,24 @@ npm run deploy                                      # Deploy to production (work
 - Update architecture/feature docs only when the overall flow changes; minor refactors should not require doc edits.
 
 ## Agent Workflow Guardrails
-- Clarify requirements before implementing when scope/behavior is ambiguous; propose a recommended default and alternatives.
-- Share a concise plan and wait for explicit approval before changing code/config/docs.
+- Clarify requirements before implementing when scope/behavior is ambiguous.
+- Share a concise plan with checkable steps and wait for explicit approval before changing code/config/docs.
 - Do not commit or push unless explicitly requested.
+- Simplicity first: prefer the smallest change that solves the problem; avoid over-engineering.
+- Demand elegance (balanced): for non-trivial changes, ask "is there a more elegant way?" but skip this for simple fixes.
+- Root-cause fixes: avoid temporary hacks; address underlying issues when feasible.
+- Verify before done: when relevant, compare behavior to `master`, run appropriate checks, and show evidence (tests, logs, or screenshots).
+- Bug reports: diagnose from logs/tests first, propose the fix, and proceed only after approval.
+- Lessons: if a correction is made, record the root cause and prevention note in the PR description or a short `history/` entry.
+
+## Clarity & Options
+- When requirements are unclear, first inspect the current codebase/state.
+- Present 2-3 viable options with pros/cons and a recommended default.
+- Ask the user to confirm or override the recommendation.
+
+## Planning Notes (Optional)
+- For multi-step work, keep short, date-stamped notes in `history/` if needed.
+- Keep notes brief and avoid long-lived TODO lists.
 
 ## Debugging & Development Tools
 
