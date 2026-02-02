@@ -1,5 +1,8 @@
 # AGENTS.md
 
+## Assistant Response Format
+- Return responses in readable markdown format
+
 ## Project Overview
 
 This is an Expo/React Native mobile application. Prioritize mobile-first patterns, performance, and cross-platform compatibility.
@@ -17,7 +20,7 @@ When working on this project, **always consult the official Expo documentation**
 These documentation files are specifically formatted for AI agents and should be your **primary reference** for:
 
 - Expo APIs and best practices
-- Expo Router navigation patterns
+- Expo Router navigation patterns//mode
 - EAS Build, Submit, and Update workflows
 - Expo SDK modules and their usage
 - Development and deployment processes
@@ -103,6 +106,31 @@ npm run deploy                                      # Deploy to production (work
 - **Animations**: `react-native-reanimated` for performant animations on native thread
 - **Gestures**: `react-native-gesture-handler` for native gesture recognition
 - **Storage**: Use `expo-sqlite` for persistent storage, `expo-sqlite/kv-store` for simple key-value storage
+
+## Documentation Guidelines
+- Keep repo-level docs high-level: describe flows, responsibilities, and decisions instead of listing file names or schema details.
+- Avoid implementation-specific notes unless they unlock critical context; prefer inline code comments or README files co-located with the code for deep dives.
+- Update architecture/feature docs only when the overall flow changes; minor refactors should not require doc edits.
+
+## Agent Workflow Guardrails
+- Clarify requirements before implementing when scope/behavior is ambiguous.
+- Share a concise plan with checkable steps and wait for explicit approval before changing code/config/docs.
+- Do not commit or push unless explicitly requested.
+- Simplicity first: prefer the smallest change that solves the problem; avoid over-engineering.
+- Demand elegance (balanced): for non-trivial changes, ask "is there a more elegant way?" but skip this for simple fixes.
+- Root-cause fixes: avoid temporary hacks; address underlying issues when feasible.
+- Verify before done: when relevant, compare behavior to `master`, run appropriate checks, and show evidence (tests, logs, or screenshots).
+- Bug reports: diagnose from logs/tests first, propose the fix, and proceed only after approval.
+- Lessons: if a correction is made, record the root cause and prevention note in the PR description or a short `history/` entry.
+
+## Clarity & Options
+- When requirements are unclear, first inspect the current codebase/state.
+- Present 2-3 viable options with pros/cons and a recommended default.
+- Ask the user to confirm or override the recommendation.
+
+## Planning Notes (Optional)
+- For multi-step work, keep short, date-stamped notes in `history/` if needed.
+- Keep notes brief and avoid long-lived TODO lists.
 
 ## Debugging & Development Tools
 
