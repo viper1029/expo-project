@@ -5,6 +5,14 @@
 **Platforms:** iOS first (real OS-level blocking), Android second
 **Build:** Expo + dev builds (custom dev client) + native modules/extensions as required
 
+**v1.2 monetization override (applies to implementation):**
+* Tiers are **Free + Pro** only.
+* Credit unlock durations remain **5/15/30** in engine; UI/plan gating shows **Free = [5]**, **Pro = [5,15,30]**.
+* Free cap for distracting apps = **3**.
+* On downgrade (trial end/lapse): keep highest-priority mode active, lock other modes, enforce 3-app cap, hide 15/30, honor active grants until expiry.
+* Pro purchase options: monthly + annual (trial) + lifetime (non-consumable).
+* Trial/paywall triggers: 4th distracting app, 2nd mode, 15/30 unlocks, Strict/Hard enable.
+
 ---
 
 # 0) Executive summary
@@ -335,17 +343,13 @@ You can monetize day 1 without tokens/partner, using strictness + customization.
 * basic progress
 * Gentle only
 
-### Plus (subscription)
+### Pro (subscription)
 
 * unlimited modes
-* Strict mode
+* Strict + Hard modes
 * full quest set (breathing + copy text + QR key)
 * weekly review improvements
 * advanced credit cost customization
-
-### Pro (subscription)
-
-* Hard mode
 * deeper analytics
 * advanced schedules (multiple windows/day)
 * (Optional later) partner approvals, paid token overrides

@@ -4,6 +4,14 @@
 **Authority order:** Rules Engine Spec > Data Model Spec > Backlog.
 **Scope emphasis:** iOS ships as a **real blocker** day 1 (Screen Time shielding). The rules engine remains the single behavioral truth for credit economy, streaks, modes, and unlock windows.
 
+**v1.2 monetization override (applies to implementation):**
+* Tiers are **Free + Pro** only.
+* Credit unlock durations remain **5/15/30** in engine; UI/plan gating shows **Free = [5]**, **Pro = [5,15,30]**.
+* Free cap for distracting apps = **3** (enforced in UI/validation, not schema).
+* On downgrade (trial end/lapse): keep highest-priority mode active, lock other modes, enforce 3-app cap, hide 15/30, honor active grants until expiry.
+* Pro purchase options: monthly + annual (trial) + lifetime (non-consumable).
+* Trial/paywall triggers: 4th distracting app, 2nd mode, 15/30 unlocks, Strict/Hard enable.
+
 ---
 
 # 1) Purpose and scope
@@ -132,30 +140,29 @@ DST / timezone travel:
 
 The engine accepts an input tier:
 
-`EntitlementTier = "FREE" | "PLUS" | "PRO"`
+`EntitlementTier = "FREE" | "PRO"`
 
 Engine-level gates:
 
 * `max_modes`
 
     * FREE: 1
-    * PLUS/PRO: unlimited
+    * PRO: unlimited
 
 * `strictness_max`
 
     * FREE: Gentle
-    * PLUS: Strict
     * PRO: Hard
 
 * `quests_enabled_types`
 
     * FREE: Breathing only
-    * PLUS/PRO: Breathing + Copy Text + QR (if QR key set)
+    * PRO: Breathing + Copy Text + QR (if QR key set)
 
 * `credit_cost_customization`
 
     * FREE: default costs only
-    * PLUS/PRO: customizable within bounds (see §9.4)
+    * PRO: customizable within bounds (see §9.4)
 
 > Note: Partner approvals and token overrides are intentionally not in v1.1.
 
@@ -477,7 +484,7 @@ Default costs:
 Customization:
 
 * FREE: fixed defaults
-* PLUS/PRO: user can customize within bounds:
+* PRO: user can customize within bounds:
 
     * 5 min: 5..30
     * 15 min: 15..60

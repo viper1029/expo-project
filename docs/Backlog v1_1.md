@@ -3,6 +3,14 @@
 **Status:** Implementation-ready story list aligned to **Rules Engine Spec v1.1** and **Data Model Spec v1.1**.
 **Primary goal:** Ship an iOS app that **actually blocks apps** via Screen Time APIs (FamilyControls / DeviceActivity / ManagedSettings) and uses your **Focus Bank + Unlock Gate + Quests + Emergency** loop.
 
+**v1.2 monetization override (applies to implementation):**
+* Tiers are **Free + Pro** only.
+* Credit unlock durations remain **5/15/30** in engine; UI/plan gating shows **Free = [5]**, **Pro = [5,15,30]**.
+* Free cap for distracting apps = **3**.
+* On downgrade (trial end/lapse): keep highest-priority mode active, lock other modes, enforce 3-app cap, hide 15/30, honor active grants until expiry.
+* Pro purchase options: monthly + annual (trial) + lifetime (non-consumable).
+* Trial/paywall triggers: 4th distracting app, 2nd mode, 15/30 unlocks, Strict/Hard enable.
+
 > **Out of scope (v1.1):** Partner approvals + Tokens (server-authoritative token ledger) + Cloud sync.
 > These return in later versions once iOS enforcement + retention are stable.
 
@@ -788,8 +796,8 @@ Screens explain:
 * `entitlement_state.tier` drives:
 
     * max modes (FREE: 1)
-    * strictness cap (FREE: Gentle; PLUS: Strict; PRO: Hard)
-    * quest availability (FREE: breathing only; PLUS/PRO: copy + QR)
+    * strictness cap (FREE: Gentle; PRO: Hard)
+    * quest availability (FREE: breathing only; PRO: copy + QR)
 
 ---
 
@@ -797,7 +805,7 @@ Screens explain:
 
 **Acceptance**
 
-* Paywall explains Plus/Pro features
+* Paywall explains Pro features
 * Does not mention tokens/partners
 
 ---

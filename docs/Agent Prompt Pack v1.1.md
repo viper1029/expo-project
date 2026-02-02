@@ -20,6 +20,17 @@ With that clarified, here is the **Agent Prompt Pack v1.1** updated for:
 
 ---
 
+## v1.2 Monetization Override (apply during implementation)
+
+* Tiers are **Free + Pro** only.
+* Credit unlock durations remain **5/15/30** in engine; UI/plan gating shows **Free = [5]**, **Pro = [5,15,30]**.
+* Free cap for distracting apps = **3** (enforce in UI/validation and iOS picker wrapper).
+* On downgrade (trial end/lapse): keep highest-priority mode active, lock other modes, enforce 3-app cap, hide 15/30, honor active grants until expiry.
+* Pro purchase options: monthly + annual (trial) + lifetime (non-consumable).
+* Trial/paywall triggers: 4th distracting app, 2nd mode, 15/30 unlocks, Strict/Hard enable.
+
+---
+
 # Agent Prompt Pack v1.1
 
 ## Master Instructions (give to every agent)
